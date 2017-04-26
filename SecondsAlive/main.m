@@ -10,8 +10,20 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        NSDate *now = [[NSDate alloc] init];
+        NSDateComponents *comps = [[NSDateComponents alloc] init];
+        
+        [comps setYear:1990];
+        [comps setMonth:1];
+        [comps setDay:18];
+    
+        NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        
+        NSDate *dateOfBirth = [cal dateFromComponents:comps];
+        
+        double secondsAlive = [now timeIntervalSinceDate:dateOfBirth];
+        
+        NSLog(@"I have been alive for %f seconds since %@.", secondsAlive, dateOfBirth);
     }
     return 0;
 }
